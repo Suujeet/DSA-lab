@@ -1,0 +1,62 @@
+#include<iostream>
+using namespace std;
+
+int a[10]={9,6,5,4,3,1,2,7,8,10};
+int i,j,temp;
+int sizeOfArray=10;
+
+void insertionSort(){
+    for(i=1;i<10;i++){
+        temp =a[i];
+        for(j=i-1;j>=0;j--){
+            if(temp <a[j]){
+                a[j+1]=a[j];
+            } if(temp>=a[j]){
+                a[j+1]=temp;
+                break;
+            } if(j==0){
+                a[j]=temp;
+            }
+        }
+    }
+}
+
+int front=0,last=9;
+int found =false;
+int searchValue;
+
+void binarySearch(int target){
+    while(front <= last){
+        int mid =(front +last)/2;
+        if(target>a[mid]){
+            front =mid+1;
+        } if(target<a[mid]){
+            last=mid-1;
+        } if(target==a[mid]){
+            cout << "The index of the element is : " << mid << endl;
+            found = true;
+            return;
+        }
+    }
+    found=false;
+    return;
+}
+
+void display(){
+    for(i=0;i<10;i++){
+        cout<<a[i]<<" ";
+    }
+    cout<<endl;
+}
+
+int main(){
+    cout<<"Before sorting : ";
+    display();
+    insertionSort(); 
+    cout<<"After sorting : ";
+    display();
+    cout<<"Enter the number u want to search : ";
+    cin>>searchValue;
+    binarySearch(searchValue);
+    return 0;
+}
